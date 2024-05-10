@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 184, 7, 228),
+          backgroundColor: Color.fromARGB(255, 183, 7, 228),
           leading: Icon(
             Icons.arrow_back,
             color: Colors.white,
