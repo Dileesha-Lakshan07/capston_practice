@@ -11,44 +11,48 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-     // title: "PetCare App",
-      home: const UserProfileScreen(),
+      home:  UserProfileScreen(),
     );
   }
 }
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({Key? key}) : super(key: key);
+   UserProfileScreen({Key? key}) : super(key: key);
+
+  // List of district names
+  final List<String> districts = [
+   'colombo','gampaha','kalutara','kandy','matale','nuwara eliya','galle','matara','hambanthota',
+    'jaffna','kilinochchi','mannar','mulathiv','vavniya', 'batticaloa', 'ampara','trincomalee',
+    'kurunegala','puttalama','Colombo','anuradapura', 'polonnaruwa','badulla','monaragala',
+    'rathnapura', 'kegalle',   
+    // Add more district names as needed
+  ];
+  String? selectedValue;
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200], 
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 24, 29, 57), 
-    
+        backgroundColor: const Color.fromARGB(255, 24, 29, 57),
         leading: IconButton(
-          onPressed: () {
-            // Handle back button pressed
-          },
+          onPressed: () {},
           icon: const Icon(Icons.arrow_back),
-          color: Colors.white, 
+          color: Colors.white,
         ),
         title: const Text(
           "FuRrY_FrienD",
           style: TextStyle(
             fontWeight: FontWeight.w900,
-            color: Colors.white, 
+            color: Colors.white,
           ),
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              // Handle avatar tapped
-            },
+            onPressed: () {},
             icon: const CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://example.com/path_to_your_image.jpg'),
+              backgroundImage: NetworkImage('https://example.com/path_to_your_image.jpg'),
             ),
           ),
         ],
@@ -62,7 +66,7 @@ class UserProfileScreen extends StatelessWidget {
               Text(
                 "USER PROFILE",
                 style: TextStyle(
-                  color: Colors.blue, 
+                  color: Colors.blue,
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
@@ -83,14 +87,12 @@ class UserProfileScreen extends StatelessWidget {
                             width: 120,
                             height: 120,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 6,
-                                  color: Color.fromARGB(255, 15, 252, 43)),
+                              border: Border.all(width: 6, color: Color.fromARGB(255, 15, 252, 43)),
                               boxShadow: [
                                 BoxShadow(
                                   spreadRadius: 2,
                                   blurRadius: 10,
-                                  color: Colors.grey.withOpacity(0.5), 
+                                  color: Colors.grey.withOpacity(0.5),
                                 )
                               ],
                               shape: BoxShape.circle,
@@ -104,9 +106,8 @@ class UserProfileScreen extends StatelessWidget {
                               width: 40,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border: Border.all(
-                                      width: 4, color: Colors.white),
-                                  color: const Color.fromARGB(255, 0, 0, 0)), 
+                                  border: Border.all(width: 4, color: Colors.white),
+                                  color: const Color.fromARGB(255, 0, 0, 0)),
                               child: Icon(
                                 Icons.edit,
                                 color: Colors.white,
@@ -119,40 +120,52 @@ class UserProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "User Name",
-                  prefixIcon: Icon(Icons.person),
+                  hintText: "Name",
+                  prefixIcon: Icon(Icons.man_3),
                 ),
               ),
-              SizedBox(
-                height: 10,
+              SizedBox(height: 10),
+              // Dropdown button for selecting district
+              
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'District',
+                  prefixIcon: Icon(Icons.location_on),
+                ),
+                value: null, // Initially no value is selected
+                onChanged: (newValue) {
+                  // Handle dropdown value change if needed
+                },
+                items: districts.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
+              
+              SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "E-mail",
-                  prefixIcon: Icon(Icons.email_outlined),
+                  hintText: "Pet Type",
+                  prefixIcon: Icon(Icons.pets),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               TextField(
-                obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Password",
                   prefixIcon: Icon(Icons.lock_outline),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -160,9 +173,7 @@ class UserProfileScreen extends StatelessWidget {
                   prefixIcon: Icon(Icons.phone),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -170,24 +181,17 @@ class UserProfileScreen extends StatelessWidget {
                   prefixIcon: Icon(Icons.location_on),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "Confirm E-mail", 
+                  hintText: "E-mail",
                   prefixIcon: Icon(Icons.email_outlined),
                 ),
               ),
-              SizedBox(
-                height: 30,
-                width: 200,
-              ),
+              SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {
-                 
-                },
+                onPressed: () {},
                 child: Text('Submit'),
               ),
             ],
