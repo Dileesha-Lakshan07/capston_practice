@@ -1,0 +1,1 @@
+ D:\\Accedemic\\capstone_practice\\dileesha\\test_project_01\\.dart_tool\\flutter_build\\3e293a2cdfc548cab286eedace1387f1\\native_assets.yaml: 
